@@ -25,9 +25,9 @@ const Main = () => {
     }
 
     const deleteProducto = async(idProduct) => {
-        console.log("VALORES DESDE FORMIK, EN VISTA MAIN",idProduct);
+        /* console.log("VALORES DESDE FORMIK, EN VISTA MAIN",idProduct);
         const response = await simpleDelete(`http://localhost:8000/api/products/delete/${idProduct}`);
-        console.log(response)
+        console.log(response) */
         setProductos(productos.filter(producto => producto._id !==idProduct));
     }
 

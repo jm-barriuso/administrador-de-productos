@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {  useNavigate, useParams } from 'react-router-dom';
+import DeleteButton from '../components/DeleteButton';
 import { simpleDelete } from '../services/simpleDelete';
 import { simpleGet } from '../services/simpleGet';
 
@@ -30,7 +31,8 @@ const Detail = () => {
 
     return (
         <div>
-            <button className='btn btn-danger' onClick={()=>deleteProducto()}>ELIMINAR</button>
+            {/* <button className='btn btn-danger' onClick={()=>deleteProducto()}>ELIMINAR</button> */}
+            <DeleteButton idProduct={producto?._id} successCallback={()=>deleteProducto()}/>
             <h1>detalle</h1>
             <h2>{producto?.title}</h2>
             <h3>${producto?.price.toLocaleString('de-DE')}</h3>
