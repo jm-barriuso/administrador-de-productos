@@ -1,10 +1,11 @@
 
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import ProductForm from '../components/ProductForm';
 import { simplePost } from '../services/simplePost';
 import { simpleGet } from '../services/simpleGet';
 import ProductDetail from '../components/ProductDetail';
+import { simpleDelete } from '../services/simpleDelete';
 
 
 const Main = () => {
@@ -22,10 +23,18 @@ const Main = () => {
         console.log(response)
         setProductos([...productos,response.data.product]);
     }
+
+    const deleteProducto = async(idProduct) => {
+        console.log("VALORES DESDE FORMIK, EN VISTA MAIN",idProduct);
+        const response = await simpleDelete(`http://localhost:8000/api/products/delete/${idProduct}`);
+        console.log(response)
+        setProductos(productos.filter(producto => producto._id !==idProduct));
+    }
+
     return (
         <div>
-            <ProductForm title="" price="" description="" onSubmitProp={crearProducto} ></ProductForm>
-            <ProductDetail productos={productos}  getProductos={getProductos}/>
+            <ProductForm productos={productos} onSubmitProp={crearProducto} ></ProductForm>
+            <ProductDetail productos={productos}  getProductos={getProductos} deleteProducto={deleteProducto}/>
         </div>
     );
 }

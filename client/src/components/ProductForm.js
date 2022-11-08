@@ -3,11 +3,13 @@ import React from 'react';
 import * as Yup from "yup";
 
 const ProductForm = (props) => {
+    
     const { title,price,description, onSubmitProp } = props;
 
     return (
         <div>
             <Formik
+                enableReinitialize
                 initialValues={{
                     title: title,
                     price: price,
